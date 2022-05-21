@@ -214,6 +214,9 @@ workflows:
   my_workflow:
     # Run the welcome/run job in its own container
     jobs:
+      - smoke_test:
+          requires:
+            - create_infrastructure   
       # - smoke_test
       # - welcome/run
       # - print_greetings
@@ -221,9 +224,7 @@ workflows:
       # - download_file:
       #    requires:
       #      - upload_file
-      - smoke_test
-          requires:
-            - create_infrastructure          
+  
       # - configure_infrastructure
       # - create_and_deploy_front_end
       # - promote_to_production:
