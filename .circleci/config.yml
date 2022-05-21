@@ -221,7 +221,7 @@ workflows:
       # - download_file:
       #    requires:
       #      - upload_file
-       - smoke_test
+      - smoke_test
           requires:
             - create_infrastructure          
       # - configure_infrastructure
