@@ -24,7 +24,6 @@ commands:
           name: Destroy environment
           # ${CIRCLE_WORKFLOW_ID} is a Built-in environment variable 
           # ${CIRCLE_WORKFLOW_ID:0:5} takes the first 5 chars of the variable CIRCLE_CI_WORKFLOW_ID 
-          when: on_fail
           command: |
             aws cloudformation delete-stack --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} --region us-east-1
           
@@ -118,8 +117,9 @@ jobs:
             else
               return 1
             fi
-      - destroy_environment      
-  
+      - destroy_environment
+        when: on_fail 
+        
   # Exercise: Promote to Production - Job 1 
   # Prerequisite: 
   # 1. An S3 bucket (say `mybucket644752792305`) with a sample index.html created manually in your AWS console. 
